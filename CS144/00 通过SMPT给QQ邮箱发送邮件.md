@@ -4,6 +4,7 @@
   - [2. 将邮箱名和获取到的授权码进行Base64编码](#2-将邮箱名和获取到的授权码进行base64编码)
   - [3. 发送邮件](#3-发送邮件)
   - [4. 具体实现](#4-具体实现)
+- [收到邮件之后的样子](#收到邮件之后的样子)
 
 ### SMPT是什么？
 
@@ -29,7 +30,7 @@ QQ邮箱网页版->邮箱设置->账户->POP3/IMAP/SMTP/Exchange/CardDAV/CalDAV�
 #### 3. 发送邮件
 
 **从保密的角度出发，更推荐采用SMTP专用客户端或者API发送SMTP邮件。**
-这里是学习计算机网络的记录，下面采用telnet实现邮件发送功能。
+这里是学习计算机网络的记录，采用telnet实现邮件发送功能。
 
 #### 4. 具体实现
 
@@ -45,7 +46,7 @@ auth login
 BASE64加密后的[用户名] 如SHVveXV1dQ==
 BASE64加密后的[授权码] 如WXpKU2JXRnRkR2hqTW5ocllXMQ==
 
-MAIL FROM:"Sender Name" `<example@qq.com>`
+MAIL FROM:`<example@qq.com>`
 
 RCPT TO:`<example@qq.com>`
 
@@ -68,3 +69,7 @@ xxxxx
 
 quit
 ```
+
+### 收到邮件之后的样子
+
+<img src="https://s2.loli.net/2023/01/31/9YyE8TR2jLJ4B1I.png" ></a>
