@@ -9,7 +9,7 @@ sender_email = config['email']['sender']
 bcc_emails = config['email']['bcc'].split(",")
 password = config['email']['password']
 
-message = MIMEText("Hello World")
+message = MIMEText("""Hello World""")
 message['Subject'] = "Hi there"
 message['From'] = sender_email
 
