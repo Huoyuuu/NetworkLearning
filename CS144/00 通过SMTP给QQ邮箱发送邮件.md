@@ -5,6 +5,7 @@
   - [3. 发送邮件](#3-发送邮件)
   - [4. 具体实现](#4-具体实现)
 - [收到邮件之后的样子](#收到邮件之后的样子)
+- [Python程序实现流程图](#python程序实现流程图)
 
 ### SMTP是什么？
 
@@ -71,3 +72,7 @@ quit
 ### 收到邮件之后的样子
 
 <img src="https://s2.loli.net/2023/01/31/9YyE8TR2jLJ4B1I.png" ></a>
+
+### Python程序实现流程图
+
+![SMTP 流程图 中文.png](https://s2.loli.net/2023/02/05/DKJ2WuRz7bt658O.png)
