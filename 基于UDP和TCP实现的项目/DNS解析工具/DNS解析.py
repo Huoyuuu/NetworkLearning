@@ -39,7 +39,7 @@ def work_with_dnsserver(domain_name, dns_ip):
         timed_list.append(dns_ip)
 
 
-def print_result():
+def print_result(domain_name):
     global ret_list, ip_list
     for ret in ret_list:
         print(ret)
@@ -69,6 +69,9 @@ def print_result():
 
 
 def resolve_dns(domain_name):
+    domain_name = domain_name.removeprefix("https://")
+    domain_name = domain_name.removeprefix("http://")
+    domain_name = domain_name.split('/')[0]
     threads = []
     for dns_server in tqdm(dns_list):
         t = Thread(target=work_with_dnsserver, args=(domain_name, dns_server))
@@ -76,7 +79,7 @@ def resolve_dns(domain_name):
         threads.append(t)
     for t in threads:
         t.join()
-    print_result()
+    print_result(domain_name)
 
 
 if __name__ == "__main__":

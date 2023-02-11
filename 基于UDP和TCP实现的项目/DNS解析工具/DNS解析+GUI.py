@@ -90,6 +90,9 @@ def init():
 # 多线程获取解析结果，并输出到文本框内
 def resolve_dns(domain_name):
     init()
+    domain_name = domain_name.removeprefix("https://")
+    domain_name = domain_name.removeprefix("http://")
+    domain_name = domain_name.split('/')[0]
     threads = []
     for dns_server in tqdm(dns_list):
         t = Thread(target=work_with_dnsserver, args=(domain_name, dns_server))
