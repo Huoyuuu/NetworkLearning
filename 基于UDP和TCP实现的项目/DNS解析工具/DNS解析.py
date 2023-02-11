@@ -1,5 +1,5 @@
 '''
-@Author   :   Huoyuuu
+@Author   :   Huoyuuu + chatGPT
 @File     :   DNS解析.py
 @Version  :   1.0
 @Contact  :   Huoyuuu@gmail.com
