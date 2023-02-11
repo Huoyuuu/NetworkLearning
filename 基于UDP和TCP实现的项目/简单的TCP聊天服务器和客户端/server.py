@@ -7,7 +7,11 @@ serverSocket.listen(1)
 print("服务器开始运行")
 connectionSocket, addr = serverSocket.accept()
 while True:
-    sentence = connectionSocket.recv(1024).decode()
-    sentence = str(addr[0]) + ":" + str(addr[1]) + ": " + sentence
-    connectionSocket.send(sentence.encode())
-    print(sentence)
+    try:
+        sentence = connectionSocket.recv(1024).decode()
+        sentence = str(addr[0]) + ":" + str(addr[1]) + ": " + sentence
+        connectionSocket.send(sentence.encode())
+        print(sentence)
+    except:
+        print("客户端已断开连接")
+        break
