@@ -27,3 +27,5 @@
 - 实现错误检测和纠正
 - 实现流量控制机制
 - 实现拥塞控制机制
+
+![UDP文件传输 SHA-256.png](https://s2.loli.net/2023/02/12/fZxCdqWv43RLgnc.png)
