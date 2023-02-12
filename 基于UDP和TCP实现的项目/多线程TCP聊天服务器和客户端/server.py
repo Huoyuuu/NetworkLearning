@@ -1,6 +1,6 @@
 '''
 @Author   :   Huoyuuu
-@File     :   client.py
+@File     :   server.py
 @Version  :   1.0
 @Contact  :   Huoyuuu@gmail.com
 @License  :   MIT
@@ -11,30 +11,36 @@
 from socket import *
 from threading import Thread
 
+# 与单个客户端进行交互
 def new_connection():
-    connectionSocket, addr = serverSocket.accept()
-    user_name = connectionSocket.recv(1024).decode()
-    connections.append(connectionSocket)
+    # 建立新的连接
+    connection_socket, addr = server_socket.accept()
+    user_name = connection_socket.recv(1024).decode()
+    connections.append(connection_socket)
     while True:
         try:
-            message = connectionSocket.recv(1024).decode()
+            # 接收客户端信息
+            message = connection_socket.recv(1024).decode()
             print(user_name + ":" + message)
+            # 向所有客户端广播信息
             for socket in connections:
                 socket.send((user_name + ":" + message.upper()).encode())
         except Exception as e:
-            connections.remove(connectionSocket)
-            connectionSocket, addr = serverSocket.accept()
-            user_name = connectionSocket.recv(1024).decode()
-            connections.append(connectionSocket)
+            # 客户端关闭连接
+            connections.remove(connection_socket)
+            connection_socket, addr = server_socket.accept()
+            user_name = connection_socket.recv(1024).decode()
+            connections.append(connection_socket)
 
 if __name__ == "__main__":
-    maxNum = 500
+    # 建立与客户端交互的套接字
+    max_connection_num = 500
     serverPort = 12000
-    serverSocket = socket(AF_INET,SOCK_STREAM)
-    serverSocket.bind(("",serverPort))
-    serverSocket.listen(maxNum * 2)
+    server_socket = socket(AF_INET,SOCK_STREAM)
+    server_socket.bind(("",serverPort))
+    server_socket.listen(max_connection_num)
     connections = []
     threads = []
-    for i in range(maxNum * 2):
+    for i in range(max_connection_num):
         t = Thread(target=new_connection)
         t.start()

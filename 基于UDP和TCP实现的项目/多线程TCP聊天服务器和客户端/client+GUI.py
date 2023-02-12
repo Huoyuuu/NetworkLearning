@@ -1,6 +1,6 @@
 '''
 @Author   :   Huoyuuu
-@File     :   client.py
+@File     :   client+GUI.py
 @Version  :   1.0
 @Contact  :   Huoyuuu@gmail.com
 @License  :   MIT
@@ -12,9 +12,10 @@ from socket import *
 from threading import Thread
 import tkinter as tk
 
+# 接收信息
 def get_message():
     while True:
-        message = clientSocket.recv(1024).decode()
+        message = client_socket.recv(1024).decode()
         if(message):
             output_text.insert(tk.END,message)
             output_text.insert(tk.END,"\n")
@@ -22,15 +23,18 @@ def get_message():
             return
     
 if __name__ == "__main__":
-    randomMsg = "18989b8dab2df405449c16cb0"
-    serverName = "127.0.0.1"
-    serverPort = 12000
-    clientSocket = socket(AF_INET,SOCK_STREAM)
-    clientSocket.connect((serverName,serverPort))
+    # 建立和服务器交互的套接字
+    server_name = "127.0.0.1"
+    server_port = 12000
+    client_socket = socket(AF_INET,SOCK_STREAM)
+    client_socket.connect((server_name,server_port))
 
+    # 输入用户名
     user_name = input("输入用户名：")
-    clientSocket.send(user_name.encode())
+    client_socket.send(user_name.encode())
 
+    # 建立接收信息的线程
+    # 发送信息由发送按钮负责完成，每此点击“发送”后发送一条信息。
     t = Thread(target = get_message)
     t.start()
     
@@ -49,7 +53,7 @@ if __name__ == "__main__":
 
     # 处理按钮
     get_input_button = tk.Button(
-        top_frame, text="发送", command=lambda: clientSocket.send(input_entry.get().encode()))
+        top_frame, text="发送", command=lambda: client_socket.send(input_entry.get().encode()))
     get_input_button.pack(side=tk.RIGHT, fill=tk.X)
 
     # 底部框架，包含用于输出结果的文本框
