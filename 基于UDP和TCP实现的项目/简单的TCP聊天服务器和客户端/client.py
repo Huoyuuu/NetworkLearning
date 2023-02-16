@@ -1,17 +1,17 @@
 from socket import *
-serverName = "127.0.0.1"
-serverPort = 12000
-clientSocket = socket(AF_INET, SOCK_STREAM)
-clientSocket.connect((serverName, serverPort))
+server_name = "127.0.0.1"
+server_port = 12000
+client_socket = socket(AF_INET, SOCK_STREAM)
+client_socket.connect((server_name, server_port))
 print()
 print("客户端开始运行")
 while True:
     message = input("输入内容：")
-    clientSocket.send(message.encode())
+    client_socket.send(message.encode())
     if(message == "quit"):
-        clientSocket.close()
+        client_socket.close()
         print("客户端结束运行")
         print()
         break
-    getMessage = clientSocket.recv(1024)
-    print(getMessage.decode())
+    get_message = client_socket.recv(1024)
+    print(get_message.decode())

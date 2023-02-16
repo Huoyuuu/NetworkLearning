@@ -11,6 +11,7 @@
 from socket import *
 from threading import Thread
 
+
 # 与单个客户端进行交互
 def new_connection():
     # 建立新的连接
@@ -32,12 +33,13 @@ def new_connection():
             user_name = connection_socket.recv(1024).decode()
             connections.append(connection_socket)
 
+
 if __name__ == "__main__":
     # 建立与客户端交互的套接字
     max_connection_num = 500
     serverPort = 12000
-    server_socket = socket(AF_INET,SOCK_STREAM)
-    server_socket.bind(("",serverPort))
+    server_socket = socket(AF_INET, SOCK_STREAM)
+    server_socket.bind(("", serverPort))
     server_socket.listen(max_connection_num)
     connections = []
     threads = []

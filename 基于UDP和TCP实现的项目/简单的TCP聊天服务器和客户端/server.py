@@ -1,16 +1,15 @@
 from socket import *
-serverName = "127.0.0.1"
-serverPort = 12000
-serverSocket = socket(AF_INET, SOCK_STREAM)
-serverSocket.bind(('', serverPort))
-serverSocket.listen(1)
+server_port = 12000
+server_socket = socket(AF_INET, SOCK_STREAM)
+server_socket.bind(('', server_port))
+server_socket.listen(1)
 print("服务器开始运行")
-connectionSocket, addr = serverSocket.accept()
+connection_socket, addr = server_socket.accept()
 while True:
     try:
-        sentence = connectionSocket.recv(1024).decode()
+        sentence = connection_socket.recv(1024).decode()
         sentence = str(addr[0]) + ":" + str(addr[1]) + ": " + sentence
-        connectionSocket.send(sentence.encode())
+        connection_socket.send(sentence.encode())
         print(sentence)
     except:
         print("客户端已断开连接")
